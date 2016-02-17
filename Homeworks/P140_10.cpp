@@ -1,0 +1,52 @@
+#include"stdio.h"
+void main()
+{
+	int a[9]={1,56,147,15,65,36,45,97,98},b[9]={1,47,56,14,32,147,64,97,36},c[10]={0},d[10]={0},e[10]={0},i,j,done1,done2;
+	for(i=0;i<9;i++)
+	{
+		for(j=0;j<9;j++)
+		{
+			if(a[i]==b[j])
+			{
+				c[i]=a[i];
+				done1=0;
+				break;
+			}
+			else
+				done1=1;
+		}
+		if(done1==1)d[i]=a[i];
+	}
+	for(i=0;i<10;i++)
+	{
+		for(j=0;j<10;j++)
+		{
+			if(b[i]==a[j])
+			{
+				done2=0;
+				break;
+			}
+			else
+				done2=1;
+		}
+		if(done2==1)e[i]=b[i];
+	}
+	printf("c=");
+	for(i=0;i<10;i++)
+	{
+		if(c[i]!=0)	
+		printf("%-4d",c[i]);
+	}
+	printf("\nd=");
+	for(i=0;i<10;i++)	
+	{
+		if(d[i]!=0)
+			printf("%-4d",d[i]);
+	}
+	printf("\ne=");
+	for(i=0;i<10;i++)
+	{
+		if(e[i]!=0)
+			printf("%-4d",e[i]);
+	}
+}

@@ -1,0 +1,50 @@
+#include"stdio.h"
+void main()
+{
+	int b[6][6],i,j,sum1=0,sum2=0,sum3=0,sum4=0,product1=1,product2=1;
+	for(i=0;i<6;i++)
+		for(j=0;j<6;j++)
+			scanf("%d",&b[i][j]);
+	for(i=0;i<6;i++)
+	{
+		sum1+=b[i][i];
+		product1*=b[i][i];
+	}
+	for(i=0;i<6;i++)
+	{
+		sum2+=b[i][5-i];
+		product2*=b[i][5-i];
+	}
+	for(i=1;i<5;i++)
+	{
+		for(j=1;j<5;j++)
+		{
+			sum3+=b[i][j];
+		}
+	}
+	for(i=0;i<6;i++)
+	{
+		for(j=0;j<6;j++)
+		{
+			sum4+=b[i][j];
+		}
+	}
+	sum4=sum4-sum3;
+	for(i=0;i<6;i++)
+	{
+		for(j=0;j<6;j++)
+		{
+			if((i==j)||(i+j==5))
+				b[i][j]=1;
+			else
+				b[i][j]=0;
+		}
+	}
+	printf("(1):sum1=%-4dproduct1=%-4dsum2=%-4dproduct2=%-4d\n(2)sum3=%d\n(3)sum4=%d\n(4)\n",sum1,product1,sum2,product2,sum3,sum4);
+	for(i=0;i<6;i++)
+	{
+		for(j=0;j<6;j++)
+			printf("%4d",b[i][j]);
+		printf("\n\n");
+	}
+}

@@ -1,0 +1,44 @@
+#include"stdio.h"
+void main()
+{
+	char a[100],temp2,alphabet[26];
+	int i,j,b[26]={0},temp1,done;
+	for(i=0;i<100;i++)
+	{
+		scanf("%c",&a[i]);
+		if(a[i]=='$')break;
+	}
+	for(i=0,j=65;i<26;++i,++j)
+		alphabet[i]=j;
+	for(i=0;i<100;++i)
+	{
+		if((a[i]<=96)&&(a[i]>=65))
+		{
+			for(j=0;j<26;++j)
+				if(a[i]==alphabet[j])b[j]+=1;
+		}
+	}
+	for(i=0;i<26;i++)
+	{
+		done=0;
+		for(j=0;j<26;j++)
+		{
+			if(b[j+1]>b[j])
+			{
+				temp1=b[j];
+				temp2=alphabet[j];
+				b[j]=b[j+1];
+				alphabet[j]=alphabet[j+1];
+				b[j+1]=temp1;
+				alphabet[j+1]=temp2;
+				done=1;
+			}
+		}
+		if(done==0)break;
+	}
+	for(j=0;j<26;j++)
+	{
+		if(b[j]==0)break;
+		printf("%c%2d\n",alphabet[j],b[j]);
+	}
+}
