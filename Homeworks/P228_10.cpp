@@ -1,7 +1,7 @@
 #include"stdio.h"
 #include"string.h"
 void copym(char *str1,char *str2,int m);
-void main()
+int main()
 {
 	char copystr[100]={0},str[]={"Do not go gentle into thay good night"};
 	int n,m;
@@ -19,6 +19,7 @@ void main()
 	}
 	copym(str,copystr,m);
 	puts(copystr);
+	return 0;
 }
 void copym(char *str1,char *str2,int m)
 {
