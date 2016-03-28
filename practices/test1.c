@@ -1,7 +1,8 @@
 #include "stdio.h"
 #include "string.h"
 int main(){
-	char a[]={"good"},b[]={"morning"};
-	printf("%s",strcat(a,b));
-	return 0;
+    float f;
+    int i = 1;
+    f = 1/400.0;
+    printf('%f', f);
 }
