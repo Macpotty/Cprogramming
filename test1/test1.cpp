@@ -1,42 +1,67 @@
-//
-// Created by michael on 16-4-4.
-//
+#include <iostream>
+#include <string>
 
-//
-// Created by michael on 16-4-4.
-//
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <sys/time.h>
-#include <unistd.h>
-int main()
+struct State
 {
-    struct timeval tv;
-    long long start_time,end_time;
-    long long busy_time[100];
-    long long idle_time[100];
-    int i;
-    for(i = 0; i < 100; i++)
+    State (std::string topermute_, int place_, int nextchar_, State* next_ = 0)
+            : topermute (topermute_)
+            , place (place_)
+            , nextchar (nextchar_)
+            , next (next_)
     {
-        busy_time[i] = 100000 * 0.5 * (sin(i*0.0628) + 1);
-        idle_time[i] = 100000 - busy_time[i];
     }
-    i = 0;
-    while(1)
-    {
-        gettimeofday(&tv,NULL);
-        start_time = tv.tv_sec*1000000 + tv.tv_usec;
-        end_time = start_time;
 
-        while((end_time - start_time) < busy_time[i])
+    std::string topermute;
+    int place;
+    int nextchar;
+
+    State* next;
+};
+
+std::string swtch (std::string topermute, int x, int y)
+{
+    std::string newstring = topermute;
+    newstring[x] = newstring[y];
+    newstring[y] = topermute[x]; //avoids temp variable
+
+    return newstring;
+}
+
+void permute (std::string topermute, int place = 0)
+{
+    // Linked list stack.
+    State* top = new State (topermute, place, place);
+
+    while (top != 0)
+    {
+        State* pop = top;
+        top = pop->next;
+
+        if (pop->place == pop->topermute.length () - 1)
         {
-            gettimeofday(&tv,NULL);
-            end_time = tv.tv_sec*1000000 + tv.tv_usec;
+            std::cout << pop->topermute << std::endl;
         }
-        usleep(idle_time[i]);
-        i = (i+1)%100;
+
+        for (int i = pop->place; i < pop->topermute.length (); ++i)
+        {
+            top = new State (swtch (pop->topermute, pop->place, i), pop->place + 1, i, top);
+        }
+
+        delete pop;
     }
+}
+
+int main (int argc, char* argv[])
+{
+    if (argc!=2)
+    {
+        std::cout<<"Proper input is 'permute string'";
+        return 1;
+    }
+    else
+    {
+        permute (argv[1]);
+    }
+
     return 0;
 }
