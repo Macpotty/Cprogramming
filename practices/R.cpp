@@ -19,7 +19,7 @@ char *findC (const char *source, const char *obj) {
 
 int main (){
     const char *source = "ABCDEAB";
-    const char *obj = "ABCD";
+    const char *obj = "CDH";
     char *result = findC(source, obj);
     cout << result << endl;
     return 0;
