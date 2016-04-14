@@ -15,7 +15,7 @@ char *findC (const char *source, const char *obj) {
         pNext[i] = j;
     }
 
-    for (int i = 0, j = 0; i < lenObj; i++) {
+    for (int i = 0, j = 0; i < lenSource; i++) {
         while (j > 0 && *(obj+j) != *(source+i))
             j = pNext[j-1];
         if (*(obj+j) == *(source+i))
@@ -27,8 +27,8 @@ char *findC (const char *source, const char *obj) {
 }
 
 int main (){
-    const char *source = "abababc";
-    const char *obj = "ababc";
+    const char *source = "abababababababcad";
+    const char *obj = "abababababc";
     char *result = findC(source, obj);
     cout << result << endl;
     return 0;
